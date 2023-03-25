@@ -1,5 +1,5 @@
 const mongoose = require ("mongoose");
-const { validate } = require("./userSchema");
+
 
 const profileSchema = new mongoose.Schema({
  
