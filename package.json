@@ -1,0 +1,22 @@
+{
+  "name": "mongodb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rebeca-Rello/MongoDB.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rebeca-Rello/MongoDB/issues"
+  },
+  "homepage": "https://github.com/Rebeca-Rello/MongoDB#readme",
+  "dependencies": {
+    "mongoose": "^7.0.2"
+  }
+}
