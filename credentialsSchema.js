@@ -3,7 +3,7 @@ const mongoose = require ("mongoose");
 const credentialsSchema = new mongoose.Schema({
  
     address:{
-        type:String
+        type:mongoose.Schema.Types.Mixed
         },
     phone:{
         type:Number
@@ -26,4 +26,4 @@ else{
 })
 
 
-module.exports = mongoose.model("Creedentials", credentialsSchema);
+module.exports = mongoose.model("Credentials", credentialsSchema);
