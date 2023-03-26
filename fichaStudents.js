@@ -1,15 +1,54 @@
 const mongoose = require("mongoose");
-let Students = require("./studentsSchema");
-let Marks = require("./marksSchema");
-let Subjects = require("./subjectsSchema");
-let Teachers = require ("./teachersSchema");
-
 mongoose.connect('mongodb+srv://rebecarello:RbkFullStack9@cluster0.tg30lxp.mongodb.net/codenotch',
                          {useNewUrlParser:false, useUnifiedTopology:false})
 
+////ADD SCHEMAS/////
 
-// Mostrar por consola:
-// - Todas las notas de un alumno
+////TEACHERS/////
+const teachersSchema = new mongoose.Schema({
+
+    firstName: String,
+    lastName: String,
+    groups: [String],
+
+  });
+  let Teachers = mongoose.model('Teachers', teachersSchema, "Teachers");
+
+////SUBJECTS/////
+const subjectsSchema = new mongoose.Schema({
+ 
+    title:String,
+    teachers: [teachersSchema],
+    
+
+});
+let Subjects = mongoose.model('Subjects', subjectsSchema, "Subjects");
+
+////MARKS/////
+
+const marksSchema= new mongoose.Schema({
+ 
+    date:Date,
+    mark:Number,
+    subjects:subjectsSchema,
+});
+let Marks = mongoose.model('Marks', marksSchema, "Marks");
+
+////STUDENTS/////
+
+const studentsSchema = new mongoose.Schema({
+ 
+    firstName:String,
+    lastName:String,
+    marks:[marksSchema],
+
+});
+
+let Students = mongoose.model('Students', studentsSchema, "Students");
+
+
+
+////ADD TEACHERS/////
 
 let teacher1 = new Teachers ({
    
@@ -59,17 +98,20 @@ teacher1.save()
 })
 .then((result)=>
 {
-    console.log("Teacher4 guardado");
+    console.log("Teachert4 guardado");
 })
 .catch((error)=>
 {
     console.log(error);
 })
 
+
+// ////ADD SUBJECTS/////
+
 let subjects1 = new Subjects({ 
 
     title: "Lengua",
-    teachers: [teacher3, teacher4] 
+    teachers: [teacher3, teachert4] 
 })
 
 let subjects2 = new Subjects({ 
@@ -88,7 +130,7 @@ let subjects3 = new Subjects({
 let subjects4 = new Subjects({ 
 
     title: "Tecnologia", 
-    teachers: [teacher2, teacher4] 
+    teachers: [teacher2, teachert4] 
 })
 
 
@@ -117,6 +159,8 @@ subjects1.save()
 {
     console.log(error);
 })
+
+// ////ADD MARKS/////
 
 let marks1 = new Marks({ 
 
@@ -168,28 +212,30 @@ let marks4 = new Marks({
     }) 
     
     
-    let Student1 = new Students ({
+//     ////ADD STUDENTS/////
+
+    let Students1 = new Students ({
    
         firstName: "Maria",
         lastName: "Landa",
         marks:[marks1, marks2],
-    })
+    });
     
-    let Student2 = new Students({
+    let Students2 = new Students({
         
         firstName: "Andres",
         lastName: "Rubio",
         marks:[marks3, marks4],
-    })
+    });
     
-    let Student3 = new Students({
+    let Students3 = new Students({
         
         firstName: "Laura",
         lastName: "Gonzalez",
         marks:[marks1, marks3],
     })
     
-    let Studentt4 = new Students({
+    let Students4 = new Students({
         
         firstName: "Pepa",
         lastName: "Rodriguez",
@@ -207,12 +253,12 @@ let marks4 = new Marks({
     .then((result)=>
     {
         console.log("Students2 guardado");
-        return Students.save()
+        return Students3.save()
     })
     .then((result)=>
     {
         console.log("Students3 guardado");
-        return Students.save()
+        return Students4.save()
     })
     .then((result)=>
     {
@@ -224,3 +270,45 @@ let marks4 = new Marks({
     })
     
 
+    ////////////
+
+    // Mostrar por consola: Todas las notas de un alumno.
+
+    // Students.find({firstName:"Laura"})
+    // .then((estudiante)=>{
+       
+    //    return (estudiante);
+    // })
+    // .then((notas)=>{
+
+    //     console.log(notas.marks);
+    // })
+    
+
+    ////Todas las notas de un alumno////
+    Students.findOne({ firstName: "Laura" })
+  .then((student) => {
+    student.marks.forEach((mark) => { 
+        console.log(mark.mark);
+    })});
+
+    // Todos las asignaturas de un alumno
+    Students.findOne({ firstName: "Laura" })
+    .then((student) => {
+      student.marks.forEach((mark) => { 
+          console.log(mark.subjects.title);
+      })});
+
+    //   Todos los profesores de un alumno
+    Students.findOne({ firstName: "Laura" })
+    .then((student) => {
+      student.marks.forEach((mark) => { 
+        console.log(mark.subjects); 
+      });
+      return student;
+    })
+    .then((student) => {
+      const teachers = student.m
+      console.log(teachers);
+    })
+  

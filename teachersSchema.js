@@ -1,18 +1,18 @@
-const mongoose = require ("mongoose");
+// const mongoose = require ("mongoose");
 
 
-const teachersSchema = new mongoose.Schema({
+// const teachersSchema = new mongoose.Schema({
 
-        firstName: String,
-        lastName: String,
-        groups: [String],
+//         firstName: String,
+//         lastName: String,
+//         groups: [String],
 
-      });
-
-
+//       });
 
 
-module.exports = mongoose.model ("Teachers", teachersSchema);
+
+
+// module.exports = mongoose.model ("Teachers", teachersSchema);
 
 
 

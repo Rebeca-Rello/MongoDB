@@ -1,17 +1,17 @@
-const mongoose = require ("mongoose");
-const marksSchema = require("./marksSchema");
+// const mongoose = require ("mongoose");
+// const marksSchema = require("./marksSchema");
 
 
-const studentsSchema = new mongoose.Schema({
+// const studentsSchema = new mongoose.Schema({
  
-    firstName:String,
-    lastName:String,
-    marks:[marksSchema],
+//     firstName:String,
+//     lastName:String,
+//     marks:[marksSchema],
 
-});
-
-
+// });
 
 
-module.exports = mongoose.model("Student", studentsSchema);
+
+
+// module.exports = mongoose.model("Student", studentsSchema);
 
