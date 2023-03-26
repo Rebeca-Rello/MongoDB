@@ -272,17 +272,9 @@ let marks4 = new Marks({
 
     ////////////
 
-    // Mostrar por consola: Todas las notas de un alumno.
+    // Mostrar por consola:////
 
-    // Students.find({firstName:"Laura"})
-    // .then((estudiante)=>{
-       
-    //    return (estudiante);
-    // })
-    // .then((notas)=>{
-
-    //     console.log(notas.marks);
-    // })
+    
     
 
     ////Todas las notas de un alumno////
@@ -290,14 +282,24 @@ let marks4 = new Marks({
   .then((student) => {
     student.marks.forEach((mark) => { 
         console.log(mark.mark);
-    })});
+    })})
+    .catch((error)=>
+    {
+        console.log(error);
+    })
+    
 
     // Todos las asignaturas de un alumno
     Students.findOne({ firstName: "Laura" })
     .then((student) => {
       student.marks.forEach((mark) => { 
           console.log(mark.subjects.title);
-      })});
+      })})
+      .catch((error)=>
+      {
+          console.log(error);
+      })
+      
 
     //   Todos los profesores de un alumno
     Students.findOne({ firstName: "Laura" })
@@ -311,4 +313,8 @@ let marks4 = new Marks({
       const teachers = student.m
       console.log(teachers);
     })
-  
+    .catch((error)=>
+    {
+        console.log(error);
+    })
+    
